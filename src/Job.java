@@ -44,15 +44,12 @@ public class Job implements Serializable {
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Job.txt"));
         String [] array = {"AA AAA", "AA AA", "dddd s"};
         Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
         Job jobUpdate = new Job("13232DEF$", "Job22", "Doe2", "Sydney,Ne3w South Wales,Australia", "2023-02-21", "Junior", "Full time", array, 40000, "Description example" );
         //If addJob true then serialize job object to txt file
         if (job.addJob(job)) {
             System.out.println("added job");
-            out.writeObject(job);
-            out.close();
         }
 
         //if updateJob true then change job values to update job values
@@ -70,9 +67,6 @@ public class Job implements Serializable {
             job.jobSalary = jobUpdate.jobSalary;
             job.jobDescription = jobUpdate.jobDescription;
 
-            ObjectOutputStream outOverwrite = new ObjectOutputStream(new FileOutputStream("Job.txt"));
-            outOverwrite.writeObject(job);
-            outOverwrite.close();
         }
     }
 
@@ -81,7 +75,7 @@ public class Job implements Serializable {
      * @param job input parameter job object to test validate values
      * @return boolean
      */
-    public boolean addJob(Job job) {
+    public boolean addJob(Job job) throws IOException {
         //check if job number is null or the length is not 9
         if (job.jobNumber == null || job.jobNumber.length() != 9) {
             return false;
@@ -129,6 +123,10 @@ public class Job implements Serializable {
                 return  false;
             }
         }
+
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Job.txt"));
+        out.writeObject(job);
+        out.close();
 
         return true;
     }
@@ -218,7 +216,9 @@ public class Job implements Serializable {
             return false;
         }
 
-
+        ObjectOutputStream outOverwrite = new ObjectOutputStream(new FileOutputStream("Job.txt"));
+        outOverwrite.writeObject(job);
+        outOverwrite.close();
         return  true;
     }
 

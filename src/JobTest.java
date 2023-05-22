@@ -7,42 +7,42 @@ import static org.junit.jupiter.api.Assertions.*;
 class JobTest {
 
     @Test
-    void validAddJob1() {
+    void validAddJob1() throws IOException {
         String [] array = {"Python"};
         Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
         assertTrue(job.addJob(job));
     }
 
     @Test
-    void validAddJob2() {
+    void validAddJob2() throws IOException {
         String [] array = {"Python,C++,SQL"};
             Job job = new Job("13132DEF$", "Job2", "Doe", "Sydney,New South Wales,Australia", "2023-02-01", "Senior", "Full time", array, 111000, "Description example" );
         assertTrue(job.addJob(job));
     }
 
     @Test
-    void invalidAddJobIncorrectJobName1() {
+    void invalidAddJobIncorrectJobName1() throws IOException {
         String [] array = {"Python"};
         Job job = new Job("242415ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
         assertFalse(job.addJob(job));
     }
 
     @Test
-    void invalidAddJobIncorrectJobName2() {
+    void invalidAddJobIncorrectJobName2() throws IOException {
         String [] array = {"Python"};
         Job job = new Job("13136###A", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
         assertFalse(job.addJob(job));
     }
 
     @Test
-    void invalidAdJobIncorrectSalary1() {
+    void invalidAdJobIncorrectSalary1() throws IOException {
         String [] array = {"Python"};
         Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 39999, "Description example" );
         assertFalse(job.addJob(job));
     }
 
     @Test
-    void invalidAdJobIncorrectSalary2() {
+    void invalidAdJobIncorrectSalary2() throws IOException {
         String [] array = {"Python,C++,SQL"};
         Job job = new Job("13132DEF$", "Job2", "Doe", "Sydney,New South Wales,Australia", "2023-02-01", "Junior", "Full time", array, 70001, "Description example" );
         assertFalse(job.addJob(job));
@@ -65,7 +65,7 @@ class JobTest {
     @Test
     void invalidUpdateJobIncorrectSalaryIncrease1() throws IOException, ClassNotFoundException {
         String [] array = {"Python"};
-        Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 49000, "Description example" );
+        Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 100000, "Description example" );
         assertFalse(job.updateJob(job));
     }
 
