@@ -45,8 +45,8 @@ public class Job implements Serializable {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         String [] array = {"AA AAA", "AA AA", "dddd s"};
-        Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
-        Job jobUpdate = new Job("13232DEF$", "Job22", "Doe2", "Sydney,Ne3w South Wales,Australia", "2023-02-21", "Junior", "Full time", array, 40000, "Description example" );
+        Job job = new Job("24241ABC#", "Job1", "John", "Sydney,Ne3w South Wales,Australia", "2023-01-01", "Junior", "Full time", array, 40000, "Description example" );
+        Job jobUpdate = new Job("13232DEF$", "Job22", "Doe2", "Sydney,Ne333w South Wales,Australia", "2023-02-21", "Junior", "Full time", array, 40000, "Description example" );
         //If addJob true then serialize job object to txt file
         if (job.addJob(job)) {
             System.out.println("added job");
@@ -56,17 +56,6 @@ public class Job implements Serializable {
         //serialize job object with new update job values
         if (job.updateJob(jobUpdate)) {
             System.out.println("updated job");
-            job.jobNumber = jobUpdate.jobNumber;
-            job.jobTitle = jobUpdate.jobTitle;
-            job.jobPosterName = jobUpdate.jobPosterName;
-            job.jobPosterAddress = jobUpdate.jobPosterAddress;
-            job.jobPostedDate = jobUpdate.jobPostedDate;
-            job.jobExperienceLevel = jobUpdate.jobExperienceLevel;
-            job.jobType = jobUpdate.jobType;
-            job.jobRequiredSkills = jobUpdate.jobRequiredSkills;
-            job.jobSalary = jobUpdate.jobSalary;
-            job.jobDescription = jobUpdate.jobDescription;
-
         }
     }
 
@@ -215,6 +204,19 @@ public class Job implements Serializable {
         if (job.jobType.equals("Full time") && (jobUpdate.jobType.equals("Part time") || jobUpdate.jobType.equals("Volunteer"))) {
             return false;
         }
+
+
+        //serialize job object with new update job values
+        job.jobNumber = jobUpdate.jobNumber;
+        job.jobTitle = jobUpdate.jobTitle;
+        job.jobPosterName = jobUpdate.jobPosterName;
+        job.jobPosterAddress = jobUpdate.jobPosterAddress;
+        job.jobPostedDate = jobUpdate.jobPostedDate;
+        job.jobExperienceLevel = jobUpdate.jobExperienceLevel;
+        job.jobType = jobUpdate.jobType;
+        job.jobRequiredSkills = jobUpdate.jobRequiredSkills;
+        job.jobSalary = jobUpdate.jobSalary;
+        job.jobDescription = jobUpdate.jobDescription;
 
         ObjectOutputStream outOverwrite = new ObjectOutputStream(new FileOutputStream("Job.txt"));
         outOverwrite.writeObject(job);
