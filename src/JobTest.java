@@ -77,14 +77,14 @@ class JobTest {
     }
 
     @Test
-    void invalidUpdateJobIncorrectExperienceLevelChange1() throws IOException, ClassNotFoundException {
+    void invalidUpdateJobIncorrectJobTypeChange1() throws IOException, ClassNotFoundException {
         String [] array = {"Python"};
         Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Part time", array, 40000, "Description example" );
         assertFalse(job.updateJob(job));
     }
 
     @Test
-    void invalidUpdateJobIncorrectExperienceLevelChange2() throws IOException, ClassNotFoundException {
+    void invalidUpdateJobIncorrectJobTypeChange2() throws IOException, ClassNotFoundException {
         String [] array = {"Python"};
         Job job = new Job("24241ABC#", "Job1", "John", "Sydney,New South Wales,Australia", "2023-01-01", "Junior", "Volunteer", array, 40000, "Description example" );
         assertFalse(job.updateJob(job));
